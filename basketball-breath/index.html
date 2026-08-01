@@ -4,21 +4,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#101114" />
-  <title>Дыхалка для баскетбола — трекер</title>
+  <title>Дыхалка под рывки</title>
   <style>
     :root {
       color-scheme: dark;
       --bg: #101114;
-      --card: rgba(255, 255, 255, 0.078);
-      --card-2: rgba(255, 255, 255, 0.115);
+      --card: rgba(255,255,255,.075);
+      --card-2: rgba(255,255,255,.105);
       --text: #f5f5f3;
-      --muted: rgba(245, 245, 243, 0.68);
-      --line: rgba(255, 255, 255, 0.14);
+      --muted: rgba(245,245,243,.68);
+      --line: rgba(255,255,255,.13);
       --accent: #f5c542;
       --accent-2: #ff7a59;
       --green: #76e39b;
       --radius: 24px;
-      --shadow: 0 18px 55px rgba(0, 0, 0, 0.34);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
@@ -28,41 +27,22 @@
     body {
       margin: 0;
       min-height: 100dvh;
-      color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(245, 197, 66, 0.22), transparent 34rem),
-        radial-gradient(circle at 88% 14%, rgba(255, 122, 89, 0.17), transparent 28rem),
-        linear-gradient(180deg, #15161a 0%, var(--bg) 52%, #0b0c0e 100%);
+        radial-gradient(circle at top left, rgba(245,197,66,.22), transparent 34rem),
+        radial-gradient(circle at 90% 18%, rgba(255,122,89,.18), transparent 28rem),
+        linear-gradient(180deg, #15161a 0%, var(--bg) 50%, #0b0c0e 100%);
+      color: var(--text);
       -webkit-font-smoothing: antialiased;
     }
 
     button, input, select, textarea { font: inherit; }
     button { cursor: pointer; }
 
-    input, select, textarea {
-      display: block;
-      width: 100%;
-      max-width: 100%;
-      min-width: 0;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 14px;
-      outline: none;
-      color: var(--text);
-      background: rgba(0, 0, 0, 0.24);
-      padding: 12px 12px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-    }
-
-    input[type="date"] { min-height: 48px; }
-    input:focus, select:focus, textarea:focus {
-      border-color: rgba(245, 197, 66, 0.78);
-      box-shadow: 0 0 0 4px rgba(245, 197, 66, 0.13);
-    }
-
     .app {
       width: min(100%, 760px);
       margin: 0 auto;
-      padding: 18px 14px 34px;
+      padding: 16px 14px 30px;
+      overflow: hidden;
     }
 
     .hero {
@@ -72,9 +52,9 @@
       border-radius: 30px;
       padding: 24px 20px 18px;
       background:
-        linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.055)),
-        repeating-linear-gradient(45deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 12px);
-      box-shadow: var(--shadow);
+        linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.055)),
+        repeating-linear-gradient(45deg, rgba(255,255,255,.035) 0 1px, transparent 1px 12px);
+      box-shadow: 0 18px 55px rgba(0,0,0,.35);
     }
 
     .hero::after {
@@ -86,26 +66,24 @@
       top: -48px;
       border-radius: 50%;
       background:
-        linear-gradient(90deg, transparent 47%, rgba(0,0,0,0.33) 48% 52%, transparent 53%),
-        linear-gradient(0deg, transparent 47%, rgba(0,0,0,0.33) 48% 52%, transparent 53%),
+        linear-gradient(90deg, transparent 47%, rgba(0,0,0,.33) 48% 52%, transparent 53%),
+        linear-gradient(0deg, transparent 47%, rgba(0,0,0,.33) 48% 52%, transparent 53%),
         radial-gradient(circle, #d96e2d 0 64%, #111 65% 67%, transparent 68%);
-      opacity: 0.56;
+      opacity: .56;
       transform: rotate(-18deg);
     }
 
     .kicker {
       display: inline-flex;
-      align-items: center;
-      gap: 7px;
       margin: 0 0 10px;
       padding: 7px 10px;
-      border: 1px solid rgba(245, 197, 66, 0.35);
+      border: 1px solid rgba(245,197,66,.35);
       border-radius: 999px;
       color: #ffe7a0;
-      background: rgba(245, 197, 66, 0.11);
+      background: rgba(245,197,66,.11);
       font-size: 12px;
-      font-weight: 850;
-      letter-spacing: 0.02em;
+      font-weight: 800;
+      letter-spacing: .02em;
       text-transform: uppercase;
     }
 
@@ -113,8 +91,8 @@
       margin: 0;
       max-width: 12ch;
       font-size: clamp(34px, 9vw, 58px);
-      line-height: 0.95;
-      letter-spacing: -0.06em;
+      line-height: .95;
+      letter-spacing: -.06em;
     }
 
     .hero p {
@@ -132,30 +110,23 @@
     }
 
     .stat {
+      min-width: 0;
       padding: 14px;
       border: 1px solid var(--line);
       border-radius: 18px;
-      background: rgba(0, 0, 0, 0.2);
+      background: rgba(0,0,0,.2);
     }
 
-    .stat b {
-      display: block;
-      font-size: 26px;
-      letter-spacing: -0.04em;
-    }
-
-    .stat span {
-      color: var(--muted);
-      font-size: 12px;
-    }
+    .stat b { display: block; font-size: 26px; letter-spacing: -.04em; }
+    .stat span { color: var(--muted); font-size: 12px; }
 
     .progress-shell {
       margin-top: 14px;
       height: 12px;
       overflow: hidden;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.1);
     }
 
     .progress-fill {
@@ -174,22 +145,10 @@
       margin: 26px 2px 12px;
     }
 
-    .section-title h2 {
-      margin: 0;
-      font-size: 23px;
-      letter-spacing: -0.04em;
-    }
+    .section-title h2 { margin: 0; font-size: 22px; letter-spacing: -.035em; }
+    .section-title small { color: var(--muted); text-align: right; line-height: 1.25; }
 
-    .section-title small {
-      color: var(--muted);
-      text-align: right;
-      line-height: 1.25;
-    }
-
-    .weeks, .measurements, .spoilers {
-      display: grid;
-      gap: 14px;
-    }
+    .weeks, .measurements { display: grid; gap: 14px; }
 
     .week, .measure-card, details {
       border: 1px solid var(--line);
@@ -197,7 +156,7 @@
       overflow: hidden;
       background: var(--card);
       backdrop-filter: blur(18px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+      box-shadow: 0 10px 30px rgba(0,0,0,.18);
     }
 
     .week-head {
@@ -207,155 +166,96 @@
       gap: 12px;
       padding: 16px;
       border-bottom: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.055);
+      background: rgba(255,255,255,.055);
     }
 
-    .week-head h3 {
-      margin: 0;
-      font-size: 20px;
-      letter-spacing: -0.035em;
-    }
+    .week-head h3 { margin: 0; font-size: 18px; letter-spacing: -.025em; }
 
     .badge {
       flex: 0 0 auto;
       padding: 7px 10px;
       border-radius: 999px;
-      background: rgba(118, 227, 155, 0.12);
+      background: rgba(118,227,155,.12);
       color: #baf5cc;
       font-size: 12px;
-      font-weight: 850;
+      font-weight: 800;
+      white-space: nowrap;
     }
 
-    .workout {
-      padding: 16px;
-      border-bottom: 1px solid var(--line);
-    }
-
+    .workout { padding: 14px 16px 16px; border-bottom: 1px solid var(--line); }
     .workout:last-child { border-bottom: 0; }
 
     .check-row {
       display: grid;
-      grid-template-columns: auto minmax(0, 1fr);
+      grid-template-columns: 34px minmax(0, 1fr);
       gap: 12px;
       align-items: start;
     }
 
-    .check {
-      position: relative;
-      width: 31px;
-      height: 31px;
-      margin-top: 2px;
-    }
-
-    .check input {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      margin: 0;
-    }
+    .check { position: relative; width: 30px; height: 30px; margin-top: 2px; }
+    .check input { position: absolute; inset: 0; opacity: 0; margin: 0; }
 
     .box {
       display: grid;
       place-items: center;
-      width: 31px;
-      height: 31px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-radius: 11px;
-      background: rgba(0, 0, 0, 0.22);
+      width: 30px;
+      height: 30px;
+      border: 2px solid rgba(255,255,255,.3);
+      border-radius: 10px;
+      background: rgba(0,0,0,.22);
       transition: 160ms ease;
     }
 
-    .box svg {
-      width: 18px;
-      height: 18px;
-      opacity: 0;
-      transform: scale(0.72);
-      transition: 160ms ease;
-    }
+    .box svg { width: 18px; height: 18px; opacity: 0; transform: scale(.7); transition: 160ms ease; }
+    .check input:checked + .box { border-color: transparent; background: linear-gradient(135deg, var(--green), #42c7ff); }
+    .check input:checked + .box svg { opacity: 1; transform: scale(1); }
 
-    .check input:checked + .box {
-      border-color: transparent;
-      background: linear-gradient(135deg, var(--green), #42c7ff);
-    }
+    .workout h4 { margin: 0 0 5px; font-size: 16px; line-height: 1.2; }
+    .workout p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.38; }
 
-    .check input:checked + .box svg {
-      opacity: 1;
-      transform: scale(1);
-    }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+    .tag { padding: 6px 8px; border: 1px solid rgba(255,255,255,.11); border-radius: 999px; background: rgba(255,255,255,.06); color: rgba(255,255,255,.76); font-size: 12px; }
 
-    .workout h4 {
-      margin: 0 0 6px;
-      font-size: 18px;
-      line-height: 1.15;
-      letter-spacing: -0.025em;
-    }
-
-    .workout p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.42;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-top: 10px;
-    }
-
-    .tag {
-      padding: 6px 9px;
-      border: 1px solid rgba(255, 255, 255, 0.11);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.06);
-      color: rgba(255, 255, 255, 0.76);
-      font-size: 12px;
-    }
-
-    .mini-form, .fields {
+    .mini-form {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 11px;
-      margin-top: 14px;
+      grid-template-columns: minmax(0, .8fr) minmax(0, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .field { display: grid; gap: 5px; min-width: 0; }
+    .field span { color: var(--muted); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; white-space: nowrap; }
+
+    input, select, textarea {
+      display: block;
       width: 100%;
-    }
-
-    label.field {
-      display: grid;
-      gap: 6px;
       min-width: 0;
-      width: 100%;
+      max-width: 100%;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 13px;
+      outline: none;
+      color: var(--text);
+      background: rgba(0,0,0,.24);
+      padding: 11px 11px;
+      appearance: none;
+      -webkit-appearance: none;
     }
 
-    .field span {
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
+    input:focus, select:focus, textarea:focus { border-color: rgba(245,197,66,.75); box-shadow: 0 0 0 4px rgba(245,197,66,.12); }
+    textarea { min-height: 70px; resize: vertical; }
+    .wide { grid-column: 1 / -1; }
 
     .measure-card { padding: 16px; }
+    .measure-card h3 { margin: 0 0 7px; font-size: 17px; letter-spacing: -.02em; }
+    .measure-card p { margin: 0 0 12px; color: var(--muted); font-size: 14px; line-height: 1.38; }
 
-    .measure-card h3 {
-      margin: 0 0 8px;
-      font-size: 18px;
-      letter-spacing: -0.025em;
-    }
+    .grid-2 { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
 
-    .measure-card p {
-      margin: 0 0 12px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.4;
-    }
-
-    details summary {
+    summary {
       list-style: none;
       padding: 17px 16px;
       font-weight: 850;
-      letter-spacing: -0.02em;
+      letter-spacing: -.02em;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -363,110 +263,32 @@
     }
 
     summary::-webkit-details-marker { display: none; }
-    summary::after {
-      content: "+";
-      display: grid;
-      place-items: center;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--accent);
-      font-size: 20px;
-      line-height: 1;
-      flex: 0 0 auto;
-    }
-
+    summary::after { content: "+"; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,.1); color: var(--accent); font-size: 20px; line-height: 1; flex: 0 0 auto; }
     details[open] summary::after { content: "–"; }
 
-    .details-body {
-      padding: 0 16px 16px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.45;
-    }
-
-    .details-body table {
-      width: 100%;
-      border-collapse: collapse;
-      overflow: hidden;
-      border-radius: 15px;
-      background: rgba(0, 0, 0, 0.2);
-    }
-
-    .details-body th, .details-body td {
-      padding: 10px 8px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
-      text-align: left;
-      vertical-align: top;
-      font-size: 13px;
-    }
-
+    .details-body { padding: 0 16px 16px; color: var(--muted); font-size: 14px; line-height: 1.45; }
+    .details-body table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 15px; background: rgba(0,0,0,.2); }
+    .details-body th, .details-body td { padding: 10px 8px; border-bottom: 1px solid rgba(255,255,255,.09); text-align: left; vertical-align: top; font-size: 13px; }
     .details-body tr:last-child td { border-bottom: 0; }
     .details-body th { color: var(--text); }
 
-    .actions {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin: 18px 0 0;
-    }
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 18px 0 0; }
+    .btn { border: 1px solid rgba(255,255,255,.14); border-radius: 16px; color: var(--text); background: rgba(255,255,255,.08); padding: 12px 10px; font-weight: 800; }
+    .btn.primary { border-color: transparent; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #19120a; }
 
-    .btn {
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 16px;
-      color: var(--text);
-      background: rgba(255,255,255,0.08);
-      padding: 13px 10px;
-      font-weight: 850;
-    }
-
-    .btn.primary {
-      border-color: transparent;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #19120a;
-    }
-
-    .toast {
-      position: fixed;
-      left: 50%;
-      bottom: calc(16px + env(safe-area-inset-bottom));
-      z-index: 10;
-      transform: translate(-50%, 18px);
-      opacity: 0;
-      pointer-events: none;
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 999px;
-      background: rgba(20, 22, 25, 0.88);
-      color: var(--text);
-      padding: 10px 14px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(15px);
-      transition: 200ms ease;
-      font-size: 13px;
-      font-weight: 850;
-      white-space: nowrap;
-    }
-
+    .toast { position: fixed; left: 50%; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 10; transform: translate(-50%, 18px); opacity: 0; pointer-events: none; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; background: rgba(20,22,25,.88); color: var(--text); padding: 10px 14px; box-shadow: 0 18px 55px rgba(0,0,0,.35); backdrop-filter: blur(15px); transition: 200ms ease; font-size: 13px; font-weight: 800; white-space: nowrap; }
     .toast.show { opacity: 1; transform: translate(-50%, 0); }
-
-    .footer {
-      margin: 20px 4px 0;
-      color: rgba(255, 255, 255, 0.42);
-      font-size: 12px;
-      text-align: center;
-      line-height: 1.4;
-    }
+    .footer { margin: 20px 4px 0; color: rgba(255,255,255,.42); font-size: 12px; text-align: center; line-height: 1.4; }
 
     @media (min-width: 560px) {
-      .mini-form, .fields, .actions, .stats { grid-template-columns: 1fr 1fr; }
-      .wide { grid-column: 1 / -1; }
+      .grid-2 { grid-template-columns: 1fr 1fr; }
+      .actions, .stats { grid-template-columns: 1fr 1fr; }
     }
 
-    @media (max-width: 380px) {
-      .app { padding-left: 10px; padding-right: 10px; }
-      .hero { padding-left: 16px; padding-right: 16px; }
-      .workout { padding: 14px; }
+    @media (max-width: 390px) {
+      .app { padding-left: 12px; padding-right: 12px; }
+      .workout { padding-left: 14px; padding-right: 14px; }
+      .mini-form { grid-template-columns: minmax(0, .75fr) minmax(0, 1fr); }
       h1 { max-width: 9ch; }
     }
   </style>
@@ -499,12 +321,12 @@
     <section class="measurements">
       <article class="measure-card">
         <h3>1) Контрольная на 20 минут</h3>
-        <p>Проводи в конце 2-й и 4-й недели. Один и тот же формат: вело / тренажёр / бег.</p>
-        <div class="fields">
-          <label class="field"><span>Дата</span><input data-save="test.date" type="date"></label>
+        <p>В конце 2-й и 4-й недели. Один и тот же формат: вело / тренажёр / бег.</p>
+        <div class="grid-2">
+          <label class="field"><span>Дата</span><input data-save="test.date" inputmode="numeric" placeholder="дд.мм"></label>
           <label class="field"><span>Формат</span><select data-save="test.mode"><option value="">—</option><option>Велосипед</option><option>Велотренажёр</option><option>Бег</option></select></label>
           <label class="field"><span>Дистанция / скорость</span><input data-save="test.result" placeholder="например 7.2 км"></label>
-          <label class="field"><span>Тяжесть 1–10</span><input data-save="test.rpe" inputmode="decimal" placeholder="например 5"></label>
+          <label class="field"><span>Тяжесть 1–10</span><input data-save="test.rpe" inputmode="decimal" placeholder="5"></label>
           <label class="field wide"><span>Средний пульс, если есть</span><input data-save="test.hr" inputmode="numeric" placeholder="например 142"></label>
         </div>
       </article>
@@ -512,9 +334,9 @@
       <article class="measure-card">
         <h3>2) Восстановление после интервалов</h3>
         <p>Раз в неделю после последнего быстрого интервала: пульс сразу и через 1 минуту.</p>
-        <div class="fields">
-          <label class="field"><span>Пульс сразу</span><input data-save="recovery.now" inputmode="numeric" placeholder="например 168"></label>
-          <label class="field"><span>Через 1 минуту</span><input data-save="recovery.minute" inputmode="numeric" placeholder="например 138"></label>
+        <div class="grid-2">
+          <label class="field"><span>Пульс сразу</span><input data-save="recovery.now" inputmode="numeric" placeholder="168"></label>
+          <label class="field"><span>Через 1 минуту</span><input data-save="recovery.minute" inputmode="numeric" placeholder="138"></label>
           <label class="field wide"><span>Комментарий</span><input data-save="recovery.note" placeholder="например восстановился легче"></label>
         </div>
       </article>
@@ -525,45 +347,43 @@
       <small>замены и детали</small>
     </div>
 
-    <section class="spoilers">
-      <details>
-        <summary>Как заменять велосипед бегом</summary>
-        <div class="details-body">
-          <table>
-            <thead><tr><th>Вело / тренажёр</th><th>Если доступен только бег</th></tr></thead>
-            <tbody>
-              <tr><td>30–40 мин легко</td><td>20–30 мин легко или бег/ходьба</td></tr>
-              <tr><td>50–60 мин легко</td><td>35–45 мин легко или бег/ходьба</td></tr>
-              <tr><td>30 сек быстро / 90 сек легко</td><td>20 сек быстро / 100 сек ходьба или трусца</td></tr>
-              <tr><td>45 сек быстро / 90 сек легко</td><td>30 сек быстро / 90–120 сек легко</td></tr>
-              <tr><td>2×6 мин умеренно</td><td>2×4 мин умеренно</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </details>
+    <details>
+      <summary>Как заменять велосипед бегом</summary>
+      <div class="details-body">
+        <table>
+          <thead><tr><th>Вело / тренажёр</th><th>Если только бег</th></tr></thead>
+          <tbody>
+            <tr><td>30–40 мин легко</td><td>20–30 мин легко или бег/ходьба</td></tr>
+            <tr><td>50–60 мин легко</td><td>35–45 мин легко или бег/ходьба</td></tr>
+            <tr><td>30 сек быстро / 90 сек легко</td><td>20 сек быстро / 100 сек ходьба или трусца</td></tr>
+            <tr><td>45 сек быстро / 90 сек легко</td><td>30 сек быстро / 90–120 сек легко</td></tr>
+            <tr><td>2×6 мин умеренно</td><td>2×4 мин умеренно</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
 
-      <details>
-        <summary>Как заменять велосипедом на велотренажёр</summary>
-        <div class="details-body">Делай почти один в один: 40 минут велосипеда = 40 минут тренажёра, интервалы 30/90 = те же 30/90. Длинную тренировку можно сократить до 45–60 минут, потому что тренажёр монотоннее. Сопротивление ставь такое, чтобы крутить ровно, а не давить ногами как силовую.</div>
-      </details>
+    <details>
+      <summary>Как заменять велосипедом на велотренажёр</summary>
+      <div class="details-body">Почти один в один: 40 минут велосипеда = 40 минут тренажёра, интервалы 30/90 = те же 30/90. Длинную тренировку можно сократить до 45–60 минут.</div>
+    </details>
 
-      <details>
-        <summary>Ориентиры по интенсивности</summary>
-        <div class="details-body">Легко: можешь говорить фразами, нагрузка 4–6 из 10. Быстро: говорить тяжело, нагрузка 7–9 из 10, но без ощущения «сейчас развалюсь». Тяжёлой делай только интервальную тренировку недели.</div>
-      </details>
+    <details>
+      <summary>Ориентиры по интенсивности</summary>
+      <div class="details-body">Легко: можешь говорить фразами, нагрузка 4–6 из 10. Быстро: говорить тяжело, нагрузка 7–9 из 10, но без ощущения «сейчас развалюсь».</div>
+    </details>
 
-      <details>
-        <summary>Когда остановиться и не геройствовать</summary>
-        <div class="details-body">Остановись, если появилась боль или сдавление в груди, свистящее дыхание, сильное головокружение, предобморочное состояние или одышка явно не по нагрузке. Это не та ситуация, где надо «дожимать».</div>
-      </details>
-    </section>
+    <details>
+      <summary>Когда остановиться</summary>
+      <div class="details-body">Остановись при боли или сдавлении в груди, свистящем дыхании, сильном головокружении, предобморочном состоянии или одышке явно не по нагрузке.</div>
+    </details>
 
     <div class="actions">
-      <button class="btn primary" id="exportBtn" type="button">Скопировать прогресс</button>
+      <button class="btn primary" id="exportBtn" type="button">Скопировать</button>
       <button class="btn" id="resetBtn" type="button">Сбросить</button>
     </div>
 
-    <p class="footer">Данные сохраняются только в этом браузере на этом устройстве через localStorage.</p>
+    <p class="footer">Данные сохраняются только в этом браузере через localStorage.</p>
   </main>
 
   <div class="toast" id="toast">Сохранено</div>
@@ -632,36 +452,31 @@
             <h3>Неделя ${week.week}</h3>
             <span class="badge">${week.focus}</span>
           </header>
-          ${week.workouts.map(workout => {
-            const item = state[workout.id] || {};
-            return `
-              <section class="workout" data-workout="${workout.id}">
-                <div class="check-row">
-                  <label class="check" aria-label="Отметить тренировку выполненной">
-                    <input type="checkbox" data-done="${workout.id}" ${item.done ? 'checked' : ''}>
-                    <span class="box">${checkedIcon()}</span>
-                  </label>
-                  <div>
-                    <h4>${workout.title}</h4>
-                    <p>${workout.text}</p>
-                    <div class="tags">${workout.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
-                  </div>
+          ${week.workouts.map(workout => `
+            <section class="workout" data-workout="${workout.id}">
+              <div class="check-row">
+                <label class="check" aria-label="Отметить тренировку выполненной">
+                  <input type="checkbox" data-done="${workout.id}" ${state[workout.id]?.done ? 'checked' : ''}>
+                  <span class="box">${checkedIcon()}</span>
+                </label>
+                <div>
+                  <h4>${workout.title}</h4>
+                  <p>${workout.text}</p>
+                  <div class="tags">${workout.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
                 </div>
-                <div class="mini-form">
-                  <label class="field"><span>Дата</span><input type="date" data-workout-field="${workout.id}.date" value="${escapeAttr(item.date || '')}"></label>
-                  <label class="field"><span>Тяжесть 1–10</span><input inputmode="decimal" placeholder="5" data-workout-field="${workout.id}.rpe" value="${escapeAttr(item.rpe || '')}"></label>
-                  <label class="field wide"><span>Заметка / результат</span><input placeholder="например 12 км, легко" data-workout-field="${workout.id}.note" value="${escapeAttr(item.note || '')}"></label>
-                </div>
-              </section>
-            `;
-          }).join('')}
+              </div>
+              <div class="mini-form">
+                <label class="field"><span>Дата</span><input inputmode="numeric" placeholder="дд.мм" data-workout-field="${workout.id}.date" value="${escapeAttr(state[workout.id]?.date || '')}"></label>
+                <label class="field"><span>Тяжесть 1–10</span><input inputmode="decimal" placeholder="5" data-workout-field="${workout.id}.rpe" value="${escapeAttr(state[workout.id]?.rpe || '')}"></label>
+                <label class="field wide"><span>Заметка / результат</span><input placeholder="например 12 км, легко" data-workout-field="${workout.id}.note" value="${escapeAttr(state[workout.id]?.note || '')}"></label>
+              </div>
+            </section>
+          `).join('')}
         </article>
       `).join('');
     }
 
-    function getByPath(path) {
-      return path.split('.').reduce((acc, key) => acc?.[key], state);
-    }
+    function getByPath(path) { return path.split('.').reduce((acc, key) => acc?.[key], state); }
 
     function setByPath(path, value) {
       const parts = path.split('.');
@@ -711,14 +526,8 @@
       const percent = total ? Math.round(done / total * 100) : 0;
       document.getElementById('doneCount').textContent = `${done}/${total}`;
       document.getElementById('progressFill').style.width = `${percent}%`;
-
       const next = ids.find(id => !state[id]?.done);
-      if (!next) {
-        document.getElementById('weekFocus').textContent = 'Готово';
-      } else {
-        const week = plan.find(w => w.workouts.some(x => x.id === next));
-        document.getElementById('weekFocus').textContent = `Неделя ${week.week}`;
-      }
+      document.getElementById('weekFocus').textContent = next ? `Неделя ${plan.find(w => w.workouts.some(x => x.id === next)).week}` : 'Готово';
     }
 
     function exportProgress() {
@@ -731,11 +540,8 @@
         }
         lines.push('');
       }
-      lines.push('Контрольная 20 мин:');
-      lines.push(`Дата: ${state.test?.date || '—'}, формат: ${state.test?.mode || '—'}, результат: ${state.test?.result || '—'}, тяжесть: ${state.test?.rpe || '—'}, пульс: ${state.test?.hr || '—'}`);
-      lines.push('');
-      lines.push('Восстановление:');
-      lines.push(`Сразу: ${state.recovery?.now || '—'}, через минуту: ${state.recovery?.minute || '—'}, комментарий: ${state.recovery?.note || '—'}`);
+      lines.push(`Контрольная 20 мин: дата ${state.test?.date || '—'}, формат ${state.test?.mode || '—'}, результат ${state.test?.result || '—'}, тяжесть ${state.test?.rpe || '—'}, пульс ${state.test?.hr || '—'}`);
+      lines.push(`Восстановление: сразу ${state.recovery?.now || '—'}, через минуту ${state.recovery?.minute || '—'}, комментарий ${state.recovery?.note || '—'}`);
 
       navigator.clipboard?.writeText(lines.join('\n')).then(
         () => showToast('Прогресс скопирован'),
@@ -744,8 +550,7 @@
     }
 
     function resetAll() {
-      const ok = confirm('Сбросить все галочки и замеры на этом устройстве?');
-      if (!ok) return;
+      if (!confirm('Сбросить все галочки и замеры на этом устройстве?')) return;
       localStorage.removeItem(STORAGE_KEY);
       location.reload();
     }
@@ -753,7 +558,6 @@
     renderPlan();
     bindInputs();
     updateProgress();
-
     document.getElementById('exportBtn').addEventListener('click', exportProgress);
     document.getElementById('resetBtn').addEventListener('click', resetAll);
   </script>
