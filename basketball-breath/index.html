@@ -6,8 +6,483 @@
   <meta name="theme-color" content="#101114">
   <title>Дыхалка под рывки</title>
   <style>
-    :root{color-scheme:dark;--bg:#101114;--text:#f5f5f3;--muted:rgba(245,245,243,.68);--line:rgba(255,255,255,.13);--card:rgba(255,255,255,.075);--accent:#f5c542;--accent2:#ff7a59;--green:#76e39b;--r:24px;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    *{box-sizing:border-box}body{margin:0;min-height:100dvh;background:radial-gradient(circle at top left,rgba(245,197,66,.22),transparent 34rem),radial-gradient(circle at 90% 18%,rgba(255,122,89,.18),transparent 28rem),linear-gradient(180deg,#15161a 0%,var(--bg) 52%,#090a0c 100%);color:var(--text);-webkit-font-smoothing:antialiased}button,input,select,textarea{font:inherit}.app{width:min(100%,760px);margin:0 auto;padding:16px 14px 32px;overflow:hidden}.hero,.week,.measure,details{border:1px solid var(--line);border-radius:var(--r);background:var(--card);backdrop-filter:blur(18px);box-shadow:0 12px 34px rgba(0,0,0,.22);overflow:hidden}.hero{position:relative;border-radius:30px;padding:24px 20px 18px;background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.055)),repeating-linear-gradient(45deg,rgba(255,255,255,.035) 0 1px,transparent 1px 12px)}.hero:after{content:"";position:absolute;width:148px;height:148px;right:-50px;top:-48px;border-radius:50%;background:linear-gradient(90deg,transparent 47%,rgba(0,0,0,.33) 48% 52%,transparent 53%),linear-gradient(0deg,transparent 47%,rgba(0,0,0,.33) 48% 52%,transparent 53%),radial-gradient(circle,#d96e2d 0 64%,#111 65% 67%,transparent 68%);opacity:.56;transform:rotate(-18deg)}.kicker{display:inline-flex;margin:0 0 10px;padding:7px 10px;border:1px solid rgba(245,197,66,.35);border-radius:999px;color:#ffe7a0;background:rgba(245,197,66,.11);font-size:12px;font-weight:850;letter-spacing:.02em;text-transform:uppercase}h1{margin:0;max-width:12ch;font-size:clamp(34px,9vw,58px);line-height:.95;letter-spacing:-.06em}.hero p{margin:14px 0 0;color:var(--muted);font-size:16px;line-height:1.45}.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.stat{min-width:0;padding:14px;border:1px solid var(--line);border-radius:18px;background:rgba(0,0,0,.2)}.stat b{display:block;font-size:26px;letter-spacing:-.04em}.stat span{color:var(--muted);font-size:12px}.bar{height:12px;margin-top:14px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden}.fill{height:100%;width:0%;border-radius:inherit;background:linear-gradient(90deg,var(--accent),var(--green));transition:width .22s}.title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:26px 2px 12px}.title h2{margin:0;font-size:22px;letter-spacing:-.035em}.title small{color:var(--muted);text-align:right;line-height:1.25}.stack{display:grid;gap:14px}.measure{padding:15px 16px;background:linear-gradient(135deg,rgba(245,197,66,.10),rgba(255,255,255,.055))}.measure h3{margin:0 0 5px;font-size:17px;letter-spacing:-.02em}.measure p{margin:0 0 12px;color:var(--muted);font-size:13px;line-height:1.35}.week-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.055)}.week-head h3{margin:0;font-size:20px;letter-spacing:-.03em}.badge{flex:0 0 auto;padding:7px 10px;border-radius:999px;background:rgba(118,227,155,.12);color:#baf5cc;font-size:12px;font-weight:850;white-space:nowrap}.workout{padding:14px 16px 16px;border-bottom:1px solid var(--line)}.workout:last-child{border-bottom:0}.check-row{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start}.check{position:relative;width:30px;height:30px;margin-top:2px}.check input{position:absolute;inset:0;opacity:0;margin:0}.box{display:grid;place-items:center;width:30px;height:30px;border:2px solid rgba(255,255,255,.3);border-radius:10px;background:rgba(0,0,0,.22);transition:.16s}.box svg{width:18px;height:18px;opacity:0;transform:scale(.7);transition:.16s}.check input:checked+.box{border-color:transparent;background:linear-gradient(135deg,var(--green),#42c7ff)}.check input:checked+.box svg{opacity:1;transform:scale(1)}.workout h4{margin:0 0 5px;font-size:17px;line-height:1.2}.workout p{margin:0;color:var(--muted);font-size:14px;line-height:1.38}.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.tag{padding:6px 8px;border:1px solid rgba(255,255,255,.11);border-radius:999px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.76);font-size:12px}.form{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1fr);gap:8px;margin-top:12px}.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}.field{display:grid;gap:5px;min-width:0}.field span{color:var(--muted);font-size:11px;font-weight:850;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}input,select,textarea{display:block;width:100%;min-width:0;max-width:100%;border:1px solid rgba(255,255,255,.13);border-radius:13px;outline:none;color:var(--text);background:rgba(0,0,0,.24);padding:11px;appearance:none;-webkit-appearance:none}input[readonly]{color:rgba(245,245,243,.78);background:rgba(0,0,0,.16)}select{padding-right:34px;background-image:linear-gradient(45deg,transparent 50%,rgba(245,245,243,.72) 50%),linear-gradient(135deg,rgba(245,245,243,.72) 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px;background-repeat:no-repeat}input:focus,select:focus,textarea:focus{border-color:rgba(245,197,66,.75);box-shadow:0 0 0 4px rgba(245,197,66,.12)}.wide{grid-column:1/-1}summary{list-style:none;padding:17px 16px;font-weight:850;letter-spacing:-.02em;display:flex;justify-content:space-between;align-items:center;gap:10px}summary::-webkit-details-marker{display:none}summary:after{content:"+";display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.1);color:var(--accent);font-size:20px;line-height:1;flex:0 0 auto}details[open] summary:after{content:"–"}.details-body{padding:0 16px 16px;color:var(--muted);font-size:14px;line-height:1.45}.details-body table{width:100%;border-collapse:collapse;border-radius:15px;background:rgba(0,0,0,.2);overflow:hidden}.details-body th,.details-body td{padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.09);text-align:left;vertical-align:top;font-size:13px}.details-body th{color:var(--text)}.details-body tr:last-child td{border-bottom:0}.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 0}.btn{border:1px solid rgba(255,255,255,.14);border-radius:16px;color:var(--text);background:rgba(255,255,255,.08);padding:12px 10px;font-weight:850}.btn.primary{border-color:transparent;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#19120a}.toast{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom));z-index:10;transform:translate(-50%,18px);opacity:0;pointer-events:none;border:1px solid rgba(255,255,255,.14);border-radius:999px;background:rgba(20,22,25,.88);color:var(--text);padding:10px 14px;box-shadow:0 18px 55px rgba(0,0,0,.35);backdrop-filter:blur(15px);transition:.2s;font-size:13px;font-weight:850;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}.footer{margin:20px 4px 0;color:rgba(255,255,255,.42);font-size:12px;text-align:center;line-height:1.4}@media(min-width:560px){.grid{grid-template-columns:1fr 1fr}.stats,.actions{grid-template-columns:1fr 1fr}}@media(max-width:390px){.app{padding-left:12px;padding-right:12px}.workout{padding-left:14px;padding-right:14px}.form{grid-template-columns:minmax(0,.75fr) minmax(0,1fr)}h1{max-width:9ch}}
+    :root {
+      color-scheme: dark;
+      --bg: #101114;
+      --text: #f5f5f3;
+      --muted: rgba(245,245,243,.68);
+      --line: rgba(255,255,255,.13);
+      --card: rgba(255,255,255,.075);
+      --card2: rgba(255,255,255,.105);
+      --accent: #f5c542;
+      --accent2: #ff7a59;
+      --green: #76e39b;
+      --radius: 24px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      background:
+        radial-gradient(circle at top left, rgba(245,197,66,.22), transparent 34rem),
+        radial-gradient(circle at 90% 18%, rgba(255,122,89,.18), transparent 28rem),
+        linear-gradient(180deg, #15161a 0%, var(--bg) 52%, #090a0c 100%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+
+    .app {
+      width: min(100%, 760px);
+      margin: 0 auto;
+      padding: 16px 14px 32px;
+      overflow: hidden;
+    }
+
+    .hero, .week, .measure, details {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 12px 34px rgba(0,0,0,.22);
+      overflow: hidden;
+    }
+
+    .hero {
+      position: relative;
+      border-radius: 30px;
+      padding: 24px 20px 18px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.055)),
+        repeating-linear-gradient(45deg, rgba(255,255,255,.035) 0 1px, transparent 1px 12px);
+    }
+
+    .hero:after {
+      content: "";
+      position: absolute;
+      width: 148px;
+      height: 148px;
+      right: -50px;
+      top: -48px;
+      border-radius: 50%;
+      background:
+        linear-gradient(90deg, transparent 47%, rgba(0,0,0,.33) 48% 52%, transparent 53%),
+        linear-gradient(0deg, transparent 47%, rgba(0,0,0,.33) 48% 52%, transparent 53%),
+        radial-gradient(circle, #d96e2d 0 64%, #111 65% 67%, transparent 68%);
+      opacity: .56;
+      transform: rotate(-18deg);
+    }
+
+    .kicker {
+      display: inline-flex;
+      margin: 0 0 10px;
+      padding: 7px 10px;
+      border: 1px solid rgba(245,197,66,.35);
+      border-radius: 999px;
+      color: #ffe7a0;
+      background: rgba(245,197,66,.11);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 12ch;
+      font-size: clamp(34px, 9vw, 58px);
+      line-height: .95;
+      letter-spacing: -.06em;
+    }
+
+    .hero p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      min-width: 0;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(0,0,0,.2);
+    }
+
+    .stat b {
+      display: block;
+      font-size: 26px;
+      letter-spacing: -.04em;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .bar {
+      height: 12px;
+      margin-top: 14px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent), var(--green));
+      transition: width .22s;
+    }
+
+    .title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 26px 2px 12px;
+    }
+
+    .title h2 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: -.035em;
+    }
+
+    .title small {
+      color: var(--muted);
+      text-align: right;
+      line-height: 1.25;
+    }
+
+    .stack { display: grid; gap: 14px; }
+
+    .measure {
+      padding: 15px 16px;
+      background: linear-gradient(135deg, rgba(245,197,66,.10), rgba(255,255,255,.055));
+    }
+
+    .measure h3 {
+      margin: 0 0 5px;
+      font-size: 17px;
+      letter-spacing: -.02em;
+    }
+
+    .measure p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .week-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.055);
+    }
+
+    .week-head h3 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: -.03em;
+    }
+
+    .badge {
+      flex: 0 0 auto;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(118,227,155,.12);
+      color: #baf5cc;
+      font-size: 12px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .workout {
+      padding: 14px 16px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .workout:last-child { border-bottom: 0; }
+
+    .check-row {
+      display: grid;
+      grid-template-columns: 34px minmax(0,1fr);
+      gap: 12px;
+      align-items: start;
+    }
+
+    .check {
+      position: relative;
+      width: 30px;
+      height: 30px;
+      margin-top: 2px;
+    }
+
+    .check input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      margin: 0;
+    }
+
+    .box {
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border: 2px solid rgba(255,255,255,.3);
+      border-radius: 10px;
+      background: rgba(0,0,0,.22);
+      transition: .16s;
+    }
+
+    .box svg {
+      width: 18px;
+      height: 18px;
+      opacity: 0;
+      transform: scale(.7);
+      transition: .16s;
+    }
+
+    .check input:checked + .box {
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--green), #42c7ff);
+    }
+
+    .check input:checked + .box svg {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .workout h4 {
+      margin: 0 0 5px;
+      font-size: 17px;
+      line-height: 1.2;
+    }
+
+    .workout p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.38;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      padding: 6px 8px;
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.76);
+      font-size: 12px;
+    }
+
+    .form, .grid {
+      display: grid;
+      grid-template-columns: minmax(0,1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .field {
+      display: grid;
+      gap: 5px;
+      min-width: 0;
+    }
+
+    .field span {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      white-space: nowrap;
+    }
+
+    input, select, textarea {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 13px;
+      outline: none;
+      color: var(--text);
+      background-color: rgba(0,0,0,.24);
+      padding: 11px;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    input::placeholder { color: rgba(245,245,243,.35); }
+
+    select {
+      padding-right: 34px;
+      background-image:
+        linear-gradient(45deg, transparent 50%, rgba(245,245,243,.72) 50%),
+        linear-gradient(135deg, rgba(245,245,243,.72) 50%, transparent 50%);
+      background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%;
+      background-size: 5px 5px;
+      background-repeat: no-repeat;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: rgba(245,197,66,.75);
+      box-shadow: 0 0 0 4px rgba(245,197,66,.12);
+    }
+
+    .wide { grid-column: 1 / -1; }
+
+    summary {
+      list-style: none;
+      padding: 17px 16px;
+      font-weight: 850;
+      letter-spacing: -.02em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary:after {
+      content: "+";
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.1);
+      color: var(--accent);
+      font-size: 20px;
+      line-height: 1;
+      flex: 0 0 auto;
+    }
+
+    details[open] summary:after { content: "–"; }
+
+    .details-body {
+      padding: 0 16px 16px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .details-body table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 15px;
+      background: rgba(0,0,0,.2);
+      overflow: hidden;
+    }
+
+    .details-body th, .details-body td {
+      padding: 10px 8px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      text-align: left;
+      vertical-align: top;
+      font-size: 13px;
+    }
+
+    .details-body th { color: var(--text); }
+    .details-body tr:last-child td { border-bottom: 0; }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 18px 0 0;
+    }
+
+    .btn {
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 16px;
+      color: var(--text);
+      background: rgba(255,255,255,.08);
+      padding: 12px 10px;
+      font-weight: 850;
+    }
+
+    .btn.primary {
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #19120a;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: calc(16px + env(safe-area-inset-bottom));
+      z-index: 10;
+      transform: translate(-50%, 18px);
+      opacity: 0;
+      pointer-events: none;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 999px;
+      background: rgba(20,22,25,.88);
+      color: var(--text);
+      padding: 10px 14px;
+      box-shadow: 0 18px 55px rgba(0,0,0,.35);
+      backdrop-filter: blur(15px);
+      transition: .2s;
+      font-size: 13px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    .footer {
+      margin: 20px 4px 0;
+      color: rgba(255,255,255,.42);
+      font-size: 12px;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    @media (min-width: 560px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+      .form { grid-template-columns: minmax(0,.8fr) minmax(0,1fr); }
+      .stats, .actions { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 390px) {
+      .app { padding-left: 12px; padding-right: 12px; }
+      .workout { padding-left: 14px; padding-right: 14px; }
+      h1 { max-width: 9ch; }
+    }
   </style>
 </head>
 <body>
@@ -15,19 +490,33 @@
   <section class="hero">
     <div class="kicker">🏀 4 недели · без баскетбола</div>
     <h1>Дыхалка под рывки</h1>
-    <p>Три тренировки в неделю: спокойная база, интервалы и длинная лёгкая. Галочка ставит дату автоматически.</p>
+    <p>Три тренировки в неделю: спокойная база, интервалы и длинная лёгкая. Галочка ставит дату автоматически, но дату можно поправить руками.</p>
     <div class="stats" aria-live="polite">
       <div class="stat"><b id="doneCount">0/12</b><span>тренировок выполнено</span></div>
       <div class="stat"><b id="weekFocus">Старт</b><span>текущий ориентир</span></div>
     </div>
-    <div class="bar"><div class="fill" id="progressFill"></div></div>
+    <div class="bar" aria-label="Общий прогресс"><div class="fill" id="progressFill"></div></div>
   </section>
 
   <div class="title"><h2>План</h2><small>Отдых между тренировками<br>хотя бы 1 день</small></div>
   <section class="stack" id="weeks"></section>
 
   <div class="title"><h2>Спойлеры</h2><small>замены и детали</small></div>
-  <details><summary>Как заменять велосипед бегом</summary><div class="details-body"><table><thead><tr><th>Вело / тренажёр</th><th>Если только бег</th></tr></thead><tbody><tr><td>30–40 мин легко</td><td>20–30 мин легко или бег/ходьба</td></tr><tr><td>50–60 мин легко</td><td>35–45 мин легко или бег/ходьба</td></tr><tr><td>30 сек быстро / 90 сек легко</td><td>20 сек быстро / 100 сек ходьба или трусца</td></tr><tr><td>45 сек быстро / 90 сек легко</td><td>30 сек быстро / 90–120 сек легко</td></tr><tr><td>2×6 мин умеренно</td><td>2×4 мин умеренно</td></tr></tbody></table></div></details>
+  <details>
+    <summary>Как заменять велосипед бегом</summary>
+    <div class="details-body">
+      <table>
+        <thead><tr><th>Вело / тренажёр</th><th>Если только бег</th></tr></thead>
+        <tbody>
+          <tr><td>30–40 мин легко</td><td>20–30 мин легко или бег/ходьба</td></tr>
+          <tr><td>50–60 мин легко</td><td>35–45 мин легко или бег/ходьба</td></tr>
+          <tr><td>30 сек быстро / 90 сек легко</td><td>20 сек быстро / 100 сек ходьба или трусца</td></tr>
+          <tr><td>45 сек быстро / 90 сек легко</td><td>30 сек быстро / 90–120 сек легко</td></tr>
+          <tr><td>2×6 мин умеренно</td><td>2×4 мин умеренно</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
   <details><summary>Как заменять велосипедом на велотренажёр</summary><div class="details-body">Почти один в один: 40 минут велосипеда = 40 минут тренажёра, интервалы 30/90 = те же 30/90. Длинную тренировку можно сократить до 45–60 минут.</div></details>
   <details><summary>Ориентиры по интенсивности</summary><div class="details-body">Легко: можешь говорить фразами, нагрузка 4–6 из 10. Быстро: говорить тяжело, нагрузка 7–9 из 10, но без ощущения «сейчас развалюсь».</div></details>
   <details><summary>Когда остановиться</summary><div class="details-body">Остановись при боли или сдавлении в груди, свистящем дыхании, сильном головокружении, предобморочном состоянии или одышке явно не по нагрузке.</div></details>
@@ -36,92 +525,234 @@
   <p class="footer">Данные сохраняются только в этом браузере через localStorage.</p>
 </main>
 <div class="toast" id="toast">Сохранено</div>
+
 <script>
-  const STORAGE_KEY='basketball-breath-tracker-v2';
-  const rpeOptions='<option value="">—</option>'+Array.from({length:10},(_,i)=>`<option>${i+1}</option>`).join('');
-  const plan=[
-    {week:1,focus:'Вкатиться',workouts:[
-      {id:'w1d1',title:'Лёгкая база',text:'30 мин велосипед / велотренажёр.',tags:['легко','говоришь фразами']},
-      {id:'w1d3',title:'Интервалы 30/90',text:'8 мин разминка → 8×30 сек быстро / 90 сек легко → 5 мин заминка.',tags:['быстро коротко','без надрыва']},
-      {id:'w1d5',title:'Лёгкая база+',text:'35–40 мин велосипед / велотренажёр.',tags:['ровно','спокойно']}
+  const STORAGE_KEY = 'basketball-breath-tracker-v2';
+  const rpeOptions = '<option value="">—</option>' + Array.from({ length: 10 }, (_, i) => `<option value="${i + 1}">${i + 1}</option>`).join('');
+
+  const plan = [
+    { week: 1, focus: 'Вкатиться', workouts: [
+      { id: 'w1d1', title: 'Лёгкая база', text: '30 мин велосипед / велотренажёр.', tags: ['легко', 'говоришь фразами'] },
+      { id: 'w1d3', title: 'Интервалы 30/90', text: '8 мин разминка → 8×30 сек быстро / 90 сек легко → 5 мин заминка.', tags: ['быстро коротко', 'без надрыва'] },
+      { id: 'w1d5', title: 'Лёгкая база+', text: '35–40 мин велосипед / велотренажёр.', tags: ['ровно', 'спокойно'] }
     ]},
-    {week:2,focus:'Добавить объём',workouts:[
-      {id:'w2d1',title:'Лёгкая база',text:'35 мин велосипед / велотренажёр.',tags:['легко']},
-      {id:'w2d3',title:'Интервалы 30/90',text:'10×30 сек быстро / 90 сек легко. Разминка и заминка по 5–8 мин.',tags:['тяжёлая дня']},
-      {id:'w2d5',title:'Умеренная работа',text:'Разминка → 2×6 мин умеренно тяжело / 4 мин легко → заминка.',tags:['темп','не максимум']}
+    { week: 2, focus: 'Добавить объём', workouts: [
+      { id: 'w2d1', title: 'Лёгкая база', text: '35 мин велосипед / велотренажёр.', tags: ['легко'] },
+      { id: 'w2d3', title: 'Интервалы 30/90', text: '10×30 сек быстро / 90 сек легко. Разминка и заминка по 5–8 мин.', tags: ['тяжёлая дня'] },
+      { id: 'w2d5', title: 'Умеренная работа', text: 'Разминка → 2×6 мин умеренно тяжело / 4 мин легко → заминка.', tags: ['темп', 'не максимум'] }
     ]},
-    {week:3,focus:'Держать темп',workouts:[
-      {id:'w3d1',title:'Лёгкая база',text:'40–45 мин велосипед / велотренажёр.',tags:['легко']},
-      {id:'w3d3',title:'Интервалы 45/90',text:'8×45 сек быстро / 90 сек легко. Разминка и заминка обязательны.',tags:['чуть длиннее']},
-      {id:'w3d5',title:'Длинная лёгкая',text:'50–60 мин велосипед / велотренажёр.',tags:['длинно','мягко']}
+    { week: 3, focus: 'Держать темп', workouts: [
+      { id: 'w3d1', title: 'Лёгкая база', text: '40–45 мин велосипед / велотренажёр.', tags: ['легко'] },
+      { id: 'w3d3', title: 'Интервалы 45/90', text: '8×45 сек быстро / 90 сек легко. Разминка и заминка обязательны.', tags: ['чуть длиннее'] },
+      { id: 'w3d5', title: 'Длинная лёгкая', text: '50–60 мин велосипед / велотренажёр.', tags: ['длинно', 'мягко'] }
     ]},
-    {week:4,focus:'Закрепить',workouts:[
-      {id:'w4d1',title:'Лёгкая база',text:'35–45 мин велосипед / велотренажёр.',tags:['ровно']},
-      {id:'w4d3',title:'Интервалы 1/2',text:'6×1 мин быстро / 2 мин легко. Разминка и заминка по 8–10 мин.',tags:['сильно','контроль']},
-      {id:'w4d5',title:'Контрольная лёгкая',text:'30 мин ровно, без надрыва. Можно использовать как замер.',tags:['финал','замер']}
+    { week: 4, focus: 'Закрепить', workouts: [
+      { id: 'w4d1', title: 'Лёгкая база', text: '35–45 мин велосипед / велотренажёр.', tags: ['ровно'] },
+      { id: 'w4d3', title: 'Интервалы 1/2', text: '6×1 мин быстро / 2 мин легко. Разминка и заминка по 8–10 мин.', tags: ['сильно', 'контроль'] },
+      { id: 'w4d5', title: 'Контрольная лёгкая', text: '30 мин ровно, без надрыва. Можно использовать как замер.', tags: ['финал', 'замер'] }
     ]}
   ];
-  const state=load();
-  const weeksEl=document.getElementById('weeks');
-  const toastEl=document.getElementById('toast');
+
+  const state = loadState();
+  const weeksEl = document.getElementById('weeks');
+  const toastEl = document.getElementById('toast');
   let toastTimer;
 
-  function load(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{}}catch(e){return {}}}
-  function save(silent=false){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));updateProgress();if(!silent)toast('Сохранено')}
-  function toast(text){toastEl.textContent=text;toastEl.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toastEl.classList.remove('show'),1100)}
-  function today(){const d=new Date();return String(d.getDate()).padStart(2,'0')+'.'+String(d.getMonth()+1).padStart(2,'0')}
-  function esc(v){return String(v??'').replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;').replaceAll('>','&gt;')}
-  function byPath(path){return path.split('.').reduce((a,k)=>a?.[k],state)}
-  function setPath(path,value){const p=path.split('.');let ref=state;while(p.length>1){const k=p.shift();ref[k]=ref[k]||{};ref=ref[k]}ref[p[0]]=value}
-  function selectHtml(path,current){return `<select data-save="${path}">${rpeOptions.replace(`>${current}</option>`,` selected>${current}</option>`)}</select>`}
-  function checkIcon(){return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19.5 6.4" stroke="#07100b" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>'}
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+    catch (error) { return {}; }
+  }
 
-  function render(){
-    weeksEl.innerHTML=plan.map(w=>`
-      <article class="measure">
-        <h3>Замеры перед неделей ${w.week}</h3>
-        <p>Заполни минимум: контроль 20 минут и восстановление после интервала, если делал.</p>
+  function saveState(silent = false) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    updateProgress();
+    if (!silent) showToast('Сохранено');
+  }
+
+  function showToast(text) {
+    toastEl.textContent = text;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove('show'), 1100);
+  }
+
+  function todayString() {
+    const now = new Date();
+    const dd = String(now.getDate()).padStart(2, '0');
+    const mm = String(now.getMonth() + 1).padStart(2, '0');
+    const yyyy = now.getFullYear();
+    return `${dd}.${mm}.${yyyy}`;
+  }
+
+  function selected(value, option) {
+    return String(value || '') === String(option) ? ' selected' : '';
+  }
+
+  function esc(value) {
+    return String(value || '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('"', '&quot;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;');
+  }
+
+  function checkedIcon() {
+    return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19.5 6.4" stroke="#07100b" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  }
+
+  function weeklyMeasure(week) {
+    const key = `m${week.week}`;
+    const item = state[key] || {};
+    return `
+      <article class="measure" data-measure="${key}">
+        <h3>Замеры перед неделей ${week.week}</h3>
+        <p>Заполни минимум: 20 минут ровно + восстановление после интервала, если делал.</p>
         <div class="grid">
-          <label class="field"><span>Дата</span><input data-save="measure.w${w.week}.date" inputmode="numeric" placeholder="дд.мм" value="${esc(byPath(`measure.w${w.week}.date`))}"></label>
-          <label class="field"><span>20 минут: результат</span><input data-save="measure.w${w.week}.test" placeholder="например 7.2 км" value="${esc(byPath(`measure.w${w.week}.test`))}"></label>
-          <label class="field"><span>Тяжесть 1–10</span>${selectHtml(`measure.w${w.week}.rpe`,byPath(`measure.w${w.week}.rpe`))}</label>
-          <label class="field"><span>Средний пульс</span><input data-save="measure.w${w.week}.hr" inputmode="numeric" placeholder="если есть" value="${esc(byPath(`measure.w${w.week}.hr`))}"></label>
-          <label class="field"><span>Пульс сразу</span><input data-save="measure.w${w.week}.now" inputmode="numeric" placeholder="после интервала" value="${esc(byPath(`measure.w${w.week}.now`))}"></label>
-          <label class="field"><span>Через 1 минуту</span><input data-save="measure.w${w.week}.min" inputmode="numeric" placeholder="через минуту" value="${esc(byPath(`measure.w${w.week}.min`))}"></label>
+          <label class="field"><span>Дата замера</span><input data-measure-field="${key}.date" inputmode="numeric" placeholder="02.08" value="${esc(item.date)}"></label>
+          <label class="field"><span>Формат</span><select data-measure-field="${key}.mode"><option value="">—</option><option${selected(item.mode, 'Велосипед')}>Велосипед</option><option${selected(item.mode, 'Велотренажёр')}>Велотренажёр</option><option${selected(item.mode, 'Бег')}>Бег</option></select></label>
+          <label class="field"><span>20 мин: результат</span><input data-measure-field="${key}.result" placeholder="7.2 км / 18 км/ч" value="${esc(item.result)}"></label>
+          <label class="field"><span>Тяжесть</span><select data-measure-field="${key}.rpe">${withSelectedOptions(rpeOptions, item.rpe)}</select></label>
+          <label class="field"><span>Пульс сразу</span><input data-measure-field="${key}.now" inputmode="numeric" placeholder="168" value="${esc(item.now)}"></label>
+          <label class="field"><span>Через 1 минуту</span><input data-measure-field="${key}.minute" inputmode="numeric" placeholder="138" value="${esc(item.minute)}"></label>
+          <label class="field wide"><span>Комментарий</span><input data-measure-field="${key}.note" placeholder="например легче восстановился" value="${esc(item.note)}"></label>
         </div>
       </article>
+    `;
+  }
+
+  function withSelectedOptions(html, value) {
+    if (!value) return html;
+    return html.replace(`value="${esc(value)}"`, `value="${esc(value)}" selected`);
+  }
+
+  function renderPlan() {
+    weeksEl.innerHTML = plan.map(week => `
+      ${weeklyMeasure(week)}
       <article class="week">
-        <header class="week-head"><h3>Неделя ${w.week}</h3><span class="badge">${w.focus}</span></header>
-        ${w.workouts.map(x=>`
-          <section class="workout">
-            <div class="check-row">
-              <label class="check" aria-label="Отметить тренировку выполненной"><input type="checkbox" data-done="${x.id}" ${state[x.id]?.done?'checked':''}><span class="box">${checkIcon()}</span></label>
-              <div><h4>${x.title}</h4><p>${x.text}</p><div class="tags">${x.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div></div>
-            </div>
-            <div class="form">
-              <label class="field"><span>Дата</span><input readonly placeholder="авто" data-workout-field="${x.id}.date" value="${esc(state[x.id]?.date)}"></label>
-              <label class="field"><span>Тяжесть 1–10</span><select data-workout-field="${x.id}.rpe">${rpeOptions.replace(`>${state[x.id]?.rpe}</option>`,` selected>${state[x.id]?.rpe}</option>`)}</select></label>
-              <label class="field wide"><span>Заметка / результат</span><input placeholder="например 12 км, легко" data-workout-field="${x.id}.note" value="${esc(state[x.id]?.note)}"></label>
-            </div>
-          </section>`).join('')}
-      </article>`).join('');
+        <header class="week-head"><h3>Неделя ${week.week}</h3><span class="badge">${week.focus}</span></header>
+        ${week.workouts.map(workout => {
+          const item = state[workout.id] || {};
+          return `
+            <section class="workout" data-workout="${workout.id}">
+              <div class="check-row">
+                <label class="check" aria-label="Отметить тренировку выполненной">
+                  <input type="checkbox" data-done="${workout.id}" ${item.done ? 'checked' : ''}>
+                  <span class="box">${checkedIcon()}</span>
+                </label>
+                <div>
+                  <h4>${workout.title}</h4>
+                  <p>${workout.text}</p>
+                  <div class="tags">${workout.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
+                </div>
+              </div>
+              <div class="form">
+                <label class="field"><span>Дата</span><input data-workout-field="${workout.id}.date" inputmode="numeric" placeholder="02.08" value="${esc(item.date)}"></label>
+                <label class="field"><span>Тяжесть</span><select data-workout-field="${workout.id}.rpe">${withSelectedOptions(rpeOptions, item.rpe)}</select></label>
+                <label class="field wide"><span>Заметка / результат</span><input data-workout-field="${workout.id}.note" placeholder="например 12 км, легко" value="${esc(item.note)}"></label>
+              </div>
+            </section>
+          `;
+        }).join('')}
+      </article>
+    `).join('');
   }
 
-  function bind(){
-    document.querySelectorAll('[data-done]').forEach(input=>input.addEventListener('change',()=>{
-      const id=input.dataset.done;state[id]=state[id]||{};state[id].done=input.checked;if(input.checked&&!state[id].date)state[id].date=today();
-      const dateInput=document.querySelector(`[data-workout-field="${id}.date"]`);if(dateInput)dateInput.value=state[id].date||'';save();
-    }));
-    document.querySelectorAll('[data-workout-field]').forEach(input=>{input.addEventListener('input',()=>{const [id,field]=input.dataset.workoutField.split('.');state[id]=state[id]||{};state[id][field]=input.value;save(true)});input.addEventListener('change',()=>save())});
-    document.querySelectorAll('[data-save]').forEach(input=>{input.addEventListener('input',()=>{setPath(input.dataset.save,input.value);save(true)});input.addEventListener('change',()=>save())});
-  }
-  function updateProgress(){const ids=plan.flatMap(w=>w.workouts.map(x=>x.id));const done=ids.filter(id=>state[id]?.done).length;document.getElementById('doneCount').textContent=`${done}/${ids.length}`;document.getElementById('progressFill').style.width=Math.round(done/ids.length*100)+'%';const next=ids.find(id=>!state[id]?.done);document.getElementById('weekFocus').textContent=next?`Неделя ${plan.find(w=>w.workouts.some(x=>x.id===next)).week}`:'Готово'}
-  function exportProgress(){const lines=['Дыхалка под рывки — прогресс',''];for(const w of plan){lines.push(`Замеры перед неделей ${w.week}: ${JSON.stringify(state.measure?.['w'+w.week]||{})}`);lines.push(`Неделя ${w.week}: ${w.focus}`);for(const x of w.workouts){const i=state[x.id]||{};lines.push(`${i.done?'✓':'□'} ${x.title}${i.date?' — '+i.date:''}${i.rpe?', RPE '+i.rpe:''}${i.note?', '+i.note:''}`)}lines.push('')}navigator.clipboard?.writeText(lines.join('\n')).then(()=>toast('Прогресс скопирован'),()=>toast('Не удалось скопировать'))}
-  function resetAll(){if(!confirm('Сбросить все галочки и замеры на этом устройстве?'))return;localStorage.removeItem(STORAGE_KEY);location.reload()}
+  function bindInputs() {
+    document.querySelectorAll('[data-done]').forEach(input => {
+      input.addEventListener('change', () => {
+        const id = input.dataset.done;
+        state[id] = state[id] || {};
+        state[id].done = input.checked;
+        if (input.checked && !state[id].date) {
+          state[id].date = todayString();
+          const dateInput = document.querySelector(`[data-workout-field="${id}.date"]`);
+          if (dateInput) dateInput.value = state[id].date;
+        }
+        saveState();
+      });
+    });
 
-  render();bind();updateProgress();
-  document.getElementById('exportBtn').addEventListener('click',exportProgress);
-  document.getElementById('resetBtn').addEventListener('click',resetAll);
+    document.querySelectorAll('[data-workout-field]').forEach(input => {
+      input.addEventListener('input', () => {
+        const [id, field] = input.dataset.workoutField.split('.');
+        state[id] = state[id] || {};
+        state[id][field] = input.value;
+        saveState(true);
+      });
+      input.addEventListener('change', () => {
+        const [id, field] = input.dataset.workoutField.split('.');
+        state[id] = state[id] || {};
+        state[id][field] = input.value;
+        saveState();
+      });
+    });
+
+    document.querySelectorAll('[data-measure-field]').forEach(input => {
+      input.addEventListener('input', () => {
+        const [id, field] = input.dataset.measureField.split('.');
+        state[id] = state[id] || {};
+        state[id][field] = input.value;
+        saveState(true);
+      });
+      input.addEventListener('change', () => {
+        const [id, field] = input.dataset.measureField.split('.');
+        state[id] = state[id] || {};
+        state[id][field] = input.value;
+        saveState();
+      });
+    });
+  }
+
+  function updateProgress() {
+    const ids = plan.flatMap(week => week.workouts.map(workout => workout.id));
+    const done = ids.filter(id => state[id]?.done).length;
+    const total = ids.length;
+    const percent = total ? Math.round(done / total * 100) : 0;
+    document.getElementById('doneCount').textContent = `${done}/${total}`;
+    document.getElementById('progressFill').style.width = `${percent}%`;
+
+    const next = ids.find(id => !state[id]?.done);
+    if (!next) {
+      document.getElementById('weekFocus').textContent = 'Готово';
+    } else {
+      const week = plan.find(item => item.workouts.some(workout => workout.id === next));
+      document.getElementById('weekFocus').textContent = `Неделя ${week.week}`;
+    }
+  }
+
+  function exportProgress() {
+    const lines = ['Дыхалка под рывки — прогресс', ''];
+
+    for (const week of plan) {
+      const measure = state[`m${week.week}`] || {};
+      lines.push(`Замеры перед неделей ${week.week}: дата ${measure.date || '—'}, формат ${measure.mode || '—'}, результат ${measure.result || '—'}, тяжесть ${measure.rpe || '—'}, пульс ${measure.now || '—'}→${measure.minute || '—'}, ${measure.note || ''}`);
+      lines.push(`Неделя ${week.week}: ${week.focus}`);
+
+      for (const workout of week.workouts) {
+        const item = state[workout.id] || {};
+        lines.push(`${item.done ? '✓' : '□'} ${workout.title}${item.date ? ' — ' + item.date : ''}${item.rpe ? ', тяжесть ' + item.rpe : ''}${item.note ? ', ' + item.note : ''}`);
+      }
+
+      lines.push('');
+    }
+
+    navigator.clipboard?.writeText(lines.join('\n')).then(
+      () => showToast('Прогресс скопирован'),
+      () => showToast('Не удалось скопировать')
+    );
+  }
+
+  function resetAll() {
+    if (!confirm('Сбросить все галочки и замеры на этом устройстве?')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  }
+
+  renderPlan();
+  bindInputs();
+  updateProgress();
+  document.getElementById('exportBtn').addEventListener('click', exportProgress);
+  document.getElementById('resetBtn').addEventListener('click', resetAll);
 </script>
 </body>
 </html>
