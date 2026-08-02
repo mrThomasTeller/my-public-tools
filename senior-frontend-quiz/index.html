@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <title>Senior+ Frontend — тест из 100 вопросов</title>
+  <meta name="description" content="Интерактивный тест для подготовки Senior+ / Tech Lead Frontend: JavaScript, TypeScript, React, браузер, производительность, архитектура, безопасность и лидерство.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <span class="kicker">Senior+ / Tech Lead Frontend</span>
+      <h1>Тест из 100 вопросов</h1>
+      <p class="lead">JavaScript, TypeScript, React, браузер и HTTP, производительность, архитектура, тестирование, безопасность, доступность и техническое лидерство. Ответ фиксируется с первой попытки.</p>
+      <div class="stats" aria-label="Статистика теста">
+        <div class="stat"><b id="answeredStat">0/100</b><span>отвечено</span></div>
+        <div class="stat"><b id="correctStat">0</b><span>правильно</span></div>
+        <div class="stat"><b id="wrongStat">0</b><span>ошибок</span></div>
+        <div class="stat"><b id="scoreStat">—</b><span>точность</span></div>
+      </div>
+      <div class="progress" aria-label="Прогресс"><i id="progressBar"></i></div>
+    </section>
+
+    <nav class="toolbar" aria-label="Фильтры теста">
+      <div class="filters">
+        <button class="chip active" type="button" data-filter="all">Все</button>
+        <button class="chip" type="button" data-filter="unanswered">Неотвеченные</button>
+        <button class="chip" type="button" data-filter="wrong">Ошибки</button>
+      </div>
+      <button class="action danger" id="resetButton" type="button">Сбросить прогресс</button>
+    </nav>
+
+    <section class="question-list" id="questionList" aria-live="polite"></section>
+    <div class="empty" id="emptyState">Здесь пока ничего нет.</div>
+    <p class="footer">Прогресс хранится только в localStorage этого браузера. Тест проверяет теорию и качество решений, но не заменяет live coding и полноценный system design.</p>
+  </main>
+
+  <script>window.QUIZ_QUESTIONS = [];</script>
+  <script src="questions-01.js"></script>
+  <script src="questions-02.js"></script>
+  <script src="questions-03.js"></script>
+  <script src="questions-04.js"></script>
+  <script src="questions-05.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
