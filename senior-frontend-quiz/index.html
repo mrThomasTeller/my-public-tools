@@ -7,6 +7,68 @@
   <title>Senior+ Frontend — тест из 100 вопросов</title>
   <meta name="description" content="Интерактивный тест для подготовки Senior+ / Tech Lead Frontend: JavaScript, TypeScript, React, браузер, производительность, архитектура, безопасность и лидерство.">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .note-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: -3px 0 16px;
+      padding: 8px 11px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      color: #cbd5e1;
+      background: rgba(255,255,255,.045);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 750;
+      user-select: none;
+    }
+    .note-toggle:hover { border-color: rgba(125,211,252,.48); }
+    .note-checkbox {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+    .note-box {
+      display: grid;
+      place-items: center;
+      width: 20px;
+      height: 20px;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 6px;
+      color: transparent;
+      background: rgba(0,0,0,.18);
+      transition: .15s ease;
+    }
+    .note-checkbox:checked + .note-box {
+      border-color: transparent;
+      color: #082f49;
+      background: #7dd3fc;
+      font-weight: 950;
+    }
+    .note-checkbox:focus-visible + .note-box {
+      outline: 3px solid rgba(125,211,252,.45);
+      outline-offset: 2px;
+    }
+    .question.noted { box-shadow: inset 3px 0 0 rgba(125,211,252,.7), 0 12px 34px rgba(0,0,0,.16); }
+    .chip-count {
+      display: inline-grid;
+      min-width: 20px;
+      height: 20px;
+      margin-left: 4px;
+      place-items: center;
+      padding: 0 5px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.13);
+      font-size: 11px;
+      font-weight: 900;
+    }
+    .chip.active .chip-count { background: rgba(8,47,73,.15); }
+  </style>
 </head>
 <body>
   <main class="shell">
@@ -28,13 +90,14 @@
         <button class="chip active" type="button" data-filter="all">Все</button>
         <button class="chip" type="button" data-filter="unanswered">Неотвеченные</button>
         <button class="chip" type="button" data-filter="wrong">Ошибки</button>
+        <button class="chip" type="button" data-filter="notes">Заметки <span class="chip-count" id="notesCount">0</span></button>
       </div>
       <button class="action danger" id="resetButton" type="button">Сбросить прогресс</button>
     </nav>
 
     <section class="question-list" id="questionList" aria-live="polite"></section>
     <div class="empty" id="emptyState">Здесь пока ничего нет.</div>
-    <p class="footer">Прогресс хранится только в localStorage этого браузера. Тест проверяет теорию и качество решений, но не заменяет live coding и полноценный system design.</p>
+    <p class="footer">Ответы и заметки хранятся только в localStorage этого браузера. Сброс прогресса удаляет ответы, но сохраняет отмеченные вопросы.</p>
   </main>
 
   <script>window.QUIZ_QUESTIONS = [];</script>
