@@ -1,16 +1,18 @@
 const QUESTIONS = window.QUIZ_QUESTIONS || [];
 const STORAGE_KEY = "senior-frontend-quiz:v1";
+const NOTES_STORAGE_KEY = "senior-frontend-quiz:notes:v1";
 const letters = ["A","B","C","D","E","F"];
-let answers = loadAnswers();
+let answers = loadObject(STORAGE_KEY);
+let notes = loadObject(NOTES_STORAGE_KEY);
 let activeFilter = "all";
 
 const list = document.getElementById("questionList");
 const emptyState = document.getElementById("emptyState");
 
-function loadAnswers() {
+function loadObject(key) {
   try {
-    const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-    return parsed && typeof parsed === "object" ? parsed : {};
+    const parsed = JSON.parse(localStorage.getItem(key) || "{}");
+    return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? parsed : {};
   } catch {
     return {};
   }
@@ -18,6 +20,14 @@ function loadAnswers() {
 
 function saveAnswers() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+}
+
+function saveNotes() {
+  localStorage.setItem(NOTES_STORAGE_KEY, JSON.stringify(notes));
+}
+
+function isNoted(index) {
+  return notes[index] === true;
 }
 
 function formatText(value) {
@@ -37,16 +47,18 @@ function render() {
     const saved = answers[index];
     const isAnswered = Number.isInteger(saved);
     const isCorrect = isAnswered && saved === item.correct;
+    const noted = isNoted(index);
     const visible =
       activeFilter === "all" ||
       (activeFilter === "unanswered" && !isAnswered) ||
-      (activeFilter === "wrong" && isAnswered && !isCorrect);
+      (activeFilter === "wrong" && isAnswered && !isCorrect) ||
+      (activeFilter === "notes" && noted);
 
     if (!visible) return;
     visibleCount++;
 
     const article = document.createElement("article");
-    article.className = `question ${!isAnswered ? "unanswered" : isCorrect ? "correct" : "wrong"}`;
+    article.className = `question ${!isAnswered ? "unanswered" : isCorrect ? "correct" : "wrong"} ${noted ? "noted" : ""}`;
     article.id = `question-${index + 1}`;
     article.dataset.index = index;
 
@@ -76,6 +88,15 @@ function render() {
         <span class="category">${formatText(item.category)}</span>
       </div>
       <h2>${formatText(item.question)}</h2>
+      <label class="note-toggle">
+        <input
+          class="note-checkbox"
+          type="checkbox"
+          data-note-question="${index}"
+          ${noted ? "checked" : ""}>
+        <span class="note-box" aria-hidden="true">✓</span>
+        <span>Сохранить в заметки</span>
+      </label>
       <div class="options">${options}</div>
       <div class="feedback ${feedbackClass}" role="status">${feedbackText}</div>
       <details class="${isAnswered ? "available" : ""}">
@@ -101,18 +122,30 @@ function answer(questionIndex, optionIndex) {
   }
 }
 
+function setNote(questionIndex, checked) {
+  if (checked) {
+    notes[questionIndex] = true;
+  } else {
+    delete notes[questionIndex];
+  }
+  saveNotes();
+  render();
+}
+
 function updateStats() {
   const values = Object.entries(answers)
     .filter(([key, value]) => Number.isInteger(value) && QUESTIONS[Number(key)]);
   const answered = values.length;
   const correct = values.reduce((sum, [key, value]) => sum + (QUESTIONS[Number(key)].correct === value ? 1 : 0), 0);
   const wrong = answered - correct;
+  const noted = QUESTIONS.reduce((sum, _, index) => sum + (isNoted(index) ? 1 : 0), 0);
   const score = answered ? Math.round(correct / answered * 100) + "%" : "—";
 
   document.getElementById("answeredStat").textContent = `${answered}/${QUESTIONS.length}`;
   document.getElementById("correctStat").textContent = correct;
   document.getElementById("wrongStat").textContent = wrong;
   document.getElementById("scoreStat").textContent = score;
+  document.getElementById("notesCount").textContent = noted;
   document.getElementById("progressBar").style.width = `${answered / QUESTIONS.length * 100}%`;
 }
 
@@ -120,6 +153,12 @@ list.addEventListener("click", event => {
   const button = event.target.closest(".option");
   if (!button) return;
   answer(Number(button.dataset.question), Number(button.dataset.option));
+});
+
+list.addEventListener("change", event => {
+  const checkbox = event.target.closest(".note-checkbox");
+  if (!checkbox) return;
+  setNote(Number(checkbox.dataset.noteQuestion), checkbox.checked);
 });
 
 document.querySelector(".filters").addEventListener("click", event => {
@@ -131,7 +170,7 @@ document.querySelector(".filters").addEventListener("click", event => {
 });
 
 document.getElementById("resetButton").addEventListener("click", () => {
-  if (!confirm("Удалить все ответы и начать тест заново?")) return;
+  if (!confirm("Удалить все ответы и начать тест заново? Сохранённые заметки останутся.")) return;
   answers = {};
   localStorage.removeItem(STORAGE_KEY);
   activeFilter = "all";
