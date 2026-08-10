@@ -312,6 +312,27 @@
       margin-top: 12px;
     }
 
+    .day-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 10px;
+    }
+
+    .clear-day {
+      border: 1px solid rgba(255,122,89,.28);
+      border-radius: 12px;
+      color: #ffc1b2;
+      background: rgba(255,122,89,.08);
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .clear-day:hover {
+      border-color: rgba(255,122,89,.55);
+      background: rgba(255,122,89,.13);
+    }
+
     .field {
       display: grid;
       gap: 5px;
@@ -650,11 +671,27 @@
                 <label class="field"><span>Тяжесть</span><select data-workout-field="${workout.id}.rpe">${withSelectedOptions(rpeOptions, item.rpe)}</select></label>
                 <label class="field wide"><span>Заметка / результат</span><input data-workout-field="${workout.id}.note" placeholder="например 12 км, легко" value="${esc(item.note)}"></label>
               </div>
+              <div class="day-actions"><button class="clear-day" type="button" data-clear-workout="${workout.id}">Очистить день</button></div>
             </section>
           `;
         }).join('')}
       </article>
     `).join('');
+  }
+
+  function clearWorkout(id) {
+    if (!confirm('Очистить все поля этого дня?')) return;
+    delete state[id];
+
+    const section = document.querySelector(`[data-workout="${id}"]`);
+    if (section) {
+      const checkbox = section.querySelector(`[data-done="${id}"]`);
+      if (checkbox) checkbox.checked = false;
+      section.querySelectorAll('[data-workout-field]').forEach(input => { input.value = ''; });
+    }
+
+    saveState(true);
+    showToast('День очищен');
   }
 
   function bindInputs() {
@@ -685,6 +722,10 @@
         state[id][field] = input.value;
         saveState();
       });
+    });
+
+    document.querySelectorAll('[data-clear-workout]').forEach(button => {
+      button.addEventListener('click', () => clearWorkout(button.dataset.clearWorkout));
     });
 
     document.querySelectorAll('[data-measure-field]').forEach(input => {
