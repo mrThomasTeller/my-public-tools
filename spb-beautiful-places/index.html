@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f2eee7">
+  <title>Красивый Петербург — 153 места</title>
+  <style>
+    :root {
+      --bg:#f2eee7; --card:#fffdf9; --text:#171717; --muted:#6b6a67;
+      --line:#ded8ce; --accent:#1f5b49; --accent2:#123f34; --visited:#8a7e70;
+      --shadow:0 10px 30px rgba(38,31,23,.08);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif}
+    button,a,input{font:inherit}
+    .hero{padding:54px 20px 28px;max-width:1320px;margin:auto}
+    .eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:800;margin-bottom:12px}
+    h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(42px,7vw,88px);line-height:.92;letter-spacing:-.045em;margin:0;max-width:1050px;font-weight:700}
+    .lede{max-width:760px;margin:22px 0 0;color:var(--muted);font-size:18px;line-height:1.55}
+    .controls-wrap{position:sticky;top:0;z-index:10;padding:12px 20px;background:rgba(242,238,231,.88);backdrop-filter:blur(16px);border-top:1px solid rgba(0,0,0,.04);border-bottom:1px solid var(--line)}
+    .controls{max-width:1320px;margin:auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .stats{margin-right:auto;display:flex;gap:8px;align-items:baseline;white-space:nowrap}
+    .stats strong{font-size:22px}
+    .stats span{color:var(--muted);font-size:14px}
+    .search{min-width:230px;flex:0 1 330px;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:11px 13px;outline:none}
+    .search:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(31,91,73,.1)}
+    .toggle{border:0;border-radius:12px;padding:11px 14px;background:var(--text);color:#fff;font-weight:700;cursor:pointer}
+    .toggle.active{background:var(--visited)}
+    main{max-width:1320px;margin:0 auto;padding:28px 20px 80px}
+    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+    .card{background:var(--card);border:1px solid rgba(88,74,57,.13);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);transition:transform .18s ease,opacity .18s ease}
+    .card:hover{transform:translateY(-2px)}
+    .card.visited{opacity:.58}
+    .photo-wrap{position:relative;aspect-ratio:4/3;background:linear-gradient(135deg,#d8d0c3,#eee8de);overflow:hidden}
+    .photo{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .25s ease}
+    .photo.loaded{opacity:1}
+    .photo-status{position:absolute;inset:auto 12px 12px 12px;color:#fff;font-size:12px;text-shadow:0 1px 6px rgba(0,0,0,.65)}
+    .photo-credit{position:absolute;right:8px;bottom:8px;padding:3px 6px;border-radius:6px;background:rgba(0,0,0,.55);color:#fff;text-decoration:none;font-size:10px;display:none}
+    .photo-credit.show{display:block}
+    .body{padding:15px}
+    .cat{color:var(--accent);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+    .name{font-family:Georgia,"Times New Roman",serif;font-size:21px;line-height:1.12;margin:0 0 14px;min-height:47px}
+    .actions{display:flex;gap:8px}
+    .map,.visit{display:flex;align-items:center;justify-content:center;min-height:40px;border-radius:10px;text-decoration:none;font-weight:750;font-size:13px;cursor:pointer}
+    .map{flex:1;border:1px solid var(--line);color:var(--text);background:#fff}
+    .visit{border:0;padding:0 12px;background:var(--accent);color:#fff}
+    .visited .visit{background:#ece7de;color:#433d36}
+    .empty{display:none;text-align:center;padding:80px 20px;color:var(--muted);font-size:18px}
+    footer{max-width:1320px;margin:auto;padding:0 20px 50px;color:var(--muted);font-size:12px;line-height:1.5}
+    @media(max-width:1050px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media(max-width:760px){.hero{padding-top:34px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.controls{align-items:stretch}.stats{width:100%}.search{flex:1;min-width:0}.toggle{white-space:nowrap}}
+    @media(max-width:520px){.grid{grid-template-columns:1fr}.name{min-height:auto}.lede{font-size:16px}.controls-wrap{padding-left:12px;padding-right:12px}main{padding-left:12px;padding-right:12px}}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="eyebrow">Личный список мест</div>
+    <h1>Красивый Петербург</h1>
+    <p class="lede">153 места — от парадных ансамблей и соборов до модерна, мостов, островов, индустриальной архитектуры, парков и красивых пригородов.</p>
+  </header>
+
+  <div class="controls-wrap">
+    <div class="controls">
+      <div class="stats"><strong id="remainingCount">153</strong><span id="statsText">осталось посетить</span></div>
+      <input id="search" class="search" type="search" placeholder="Найти место…" aria-label="Найти место">
+      <button id="toggleVisited" class="toggle" type="button">Показать посещённые</button>
+    </div>
+  </div>
+
+  <main>
+    <div id="grid" class="grid"></div>
+    <div id="empty" class="empty">Ничего не найдено.</div>
+  </main>
+
+  <footer>
+    Фотографии загружаются из Wikimedia Commons по названию места и принадлежат их авторам. Ссылки «На карте» открывают поиск объекта в Яндекс.Картах. Статус посещения хранится только в localStorage этого браузера.
+  </footer>
+
+<script>
+const PLACES = [{"id":1,"name":"Эрмитаж и Зимний дворец","category":"Дворцы и музеи"},{"id":2,"name":"Дворцовая площадь","category":"Площади и ансамбли"},{"id":3,"name":"Александровская колонна","category":"Памятники"},{"id":4,"name":"Главный штаб","category":"Архитектура"},{"id":5,"name":"Исаакиевский собор","category":"Храмы"},{"id":6,"name":"Колоннада Исаакиевского собора","category":"Смотровые площадки"},{"id":7,"name":"Медный всадник","category":"Памятники"},{"id":8,"name":"Сенатская площадь","category":"Площади и ансамбли"},{"id":9,"name":"Адмиралтейство","category":"Архитектура"},{"id":10,"name":"Александровский сад","category":"Парки и сады"},{"id":11,"name":"Казанский собор","category":"Храмы"},{"id":12,"name":"Невский проспект","category":"Улицы и набережные"},{"id":13,"name":"Дом компании «Зингер»","category":"Архитектура"},{"id":14,"name":"Спас на Крови","category":"Храмы"},{"id":15,"name":"Михайловский сад","category":"Парки и сады"},{"id":16,"name":"Русский музей — Михайловский дворец","category":"Дворцы и музеи"},{"id":17,"name":"Михайловский замок","category":"Дворцы и музеи"},{"id":18,"name":"Марсово поле","category":"Парки и сады"},{"id":19,"name":"Летний сад","category":"Парки и сады"},{"id":20,"name":"Летний дворец Петра I","category":"Дворцы и музеи"},{"id":21,"name":"Набережная реки Фонтанки","category":"Улицы и набережные"},{"id":22,"name":"Аничков мост","category":"Мосты"},{"id":23,"name":"Аничков дворец","category":"Дворцы и музеи"},{"id":24,"name":"Елисеевский магазин","category":"Архитектура"},{"id":25,"name":"Большой Санкт-Петербургский государственный цирк","category":"Архитектура"},{"id":26,"name":"Улица Зодчего Росси","category":"Улицы и набережные"},{"id":27,"name":"Площадь Островского","category":"Площади и ансамбли"},{"id":28,"name":"Александринский театр","category":"Театры"},{"id":29,"name":"Витебский вокзал","category":"Архитектура"},{"id":30,"name":"Пять углов","category":"Площади и ансамбли"},{"id":31,"name":"Толстовский дом","category":"Архитектура"},{"id":32,"name":"Ротонда на Гороховой","category":"Архитектура"},{"id":33,"name":"Юсуповский дворец на Мойке","category":"Дворцы и музеи"},{"id":34,"name":"Никольский морской собор","category":"Храмы"},{"id":35,"name":"Никольские ряды","category":"Архитектура"},{"id":36,"name":"Новая Голландия","category":"Острова и пространства"},{"id":37,"name":"Мариинский театр","category":"Театры"},{"id":38,"name":"Консерватория имени Римского-Корсакова","category":"Архитектура"},{"id":39,"name":"Поцелуев мост","category":"Мосты"},{"id":40,"name":"Семимостье","category":"Смотровые точки"},{"id":41,"name":"Троицкий собор","category":"Храмы"},{"id":42,"name":"Измайловские провиантские магазины","category":"Архитектура"},{"id":43,"name":"Варшавский вокзал","category":"Индустриальная архитектура"},{"id":44,"name":"Балтийский вокзал","category":"Архитектура"},{"id":45,"name":"Особняк Брусницыных","category":"Особняки"},{"id":46,"name":"Особняк фон Дервиза","category":"Особняки"},{"id":47,"name":"Особняк Половцова","category":"Особняки"},{"id":48,"name":"Дом архитектора Лидваля","category":"Модерн"},{"id":49,"name":"Дом Бассейного товарищества","category":"Модерн"},{"id":50,"name":"Доходный дом герцога Лейхтенбергского","category":"Модерн"},{"id":51,"name":"Дом городских учреждений","category":"Архитектура"},{"id":52,"name":"Дом Мурузи","category":"Архитектура"},{"id":53,"name":"Дом Бака","category":"Архитектура"},{"id":54,"name":"Особняк Кельха","category":"Особняки"},{"id":55,"name":"Особняк Матильды Кшесинской","category":"Модерн"},{"id":56,"name":"Соборная мечеть","category":"Храмы"},{"id":57,"name":"Дом эмира Бухарского","category":"Архитектура"},{"id":58,"name":"Австрийская площадь","category":"Площади и ансамбли"},{"id":59,"name":"Каменноостровский проспект","category":"Улицы и набережные"},{"id":60,"name":"Каменноостровский театр","category":"Театры"},{"id":61,"name":"Елагин дворец","category":"Дворцы и музеи"},{"id":62,"name":"ЦПКиО на Елагином острове","category":"Парки и сады"},{"id":63,"name":"Парк 300-летия Санкт-Петербурга","category":"Парки и сады"},{"id":64,"name":"Лахта Центр","category":"Современная архитектура"},{"id":65,"name":"Газпром Арена","category":"Современная архитектура"},{"id":66,"name":"Яхтенный мост","category":"Мосты"},{"id":67,"name":"Севкабель Порт","category":"Индустриальная архитектура"},{"id":68,"name":"Набережная Макарова","category":"Улицы и набережные"},{"id":69,"name":"Стрелка Васильевского острова","category":"Площади и ансамбли"},{"id":70,"name":"Ростральные колонны","category":"Памятники"},{"id":71,"name":"Кунсткамера","category":"Дворцы и музеи"},{"id":72,"name":"Здание Двенадцати коллегий","category":"Архитектура"},{"id":73,"name":"Меншиковский дворец","category":"Дворцы и музеи"},{"id":74,"name":"Академия художеств","category":"Архитектура"},{"id":75,"name":"Сфинксы на Университетской набережной","category":"Памятники"},{"id":76,"name":"Румянцевский обелиск","category":"Памятники"},{"id":77,"name":"Андреевский собор","category":"Храмы"},{"id":78,"name":"Дворец Трезини","category":"Дворцы и музеи"},{"id":79,"name":"Петропавловская крепость","category":"Крепости"},{"id":80,"name":"Петропавловский собор","category":"Храмы"},{"id":81,"name":"Ботный дом","category":"Архитектура"},{"id":82,"name":"Иоанновский мост","category":"Мосты"},{"id":83,"name":"Кронверкская набережная","category":"Улицы и набережные"},{"id":84,"name":"Артиллерийский музей","category":"Дворцы и музеи"},{"id":85,"name":"Крейсер «Аврора»","category":"Корабли"},{"id":86,"name":"Сампсониевский собор","category":"Храмы"},{"id":87,"name":"Большеохтинский мост","category":"Мосты"},{"id":88,"name":"Смольный собор","category":"Храмы"},{"id":89,"name":"Смольный институт","category":"Архитектура"},{"id":90,"name":"Таврический дворец","category":"Дворцы и музеи"},{"id":91,"name":"Таврический сад","category":"Парки и сады"},{"id":92,"name":"Большеоктинское кладбище","category":"Исторические места"},{"id":93,"name":"Александро-Невская лавра","category":"Храмы"},{"id":94,"name":"Некрополь мастеров искусств","category":"Исторические места"},{"id":95,"name":"Феодоровский собор","category":"Храмы"},{"id":96,"name":"Московский вокзал","category":"Архитектура"},{"id":97,"name":"Дом Советов","category":"Советская архитектура"},{"id":98,"name":"Московская площадь","category":"Площади и ансамбли"},{"id":99,"name":"Чесменская церковь","category":"Храмы"},{"id":100,"name":"Чесменский дворец","category":"Дворцы и музеи"},{"id":101,"name":"Пулковская обсерватория","category":"Архитектура"},{"id":102,"name":"Гранд Макет Россия","category":"Музеи"},{"id":103,"name":"Лопухинский сад","category":"Парки и сады"},{"id":104,"name":"Ботанический сад Петра Великого","category":"Парки и сады"},{"id":105,"name":"Дача Гаусвальд","category":"Модерн"},{"id":106,"name":"Дача Головина","category":"Архитектура"},{"id":107,"name":"Буддийский дацан Гунзэчойнэй","category":"Храмы"},{"id":108,"name":"Канонерский остров","category":"Острова и пространства"},{"id":109,"name":"Канонерский тоннель","category":"Инженерные сооружения"},{"id":110,"name":"Обводный канал","category":"Улицы и набережные"},{"id":111,"name":"Бертгольд Центр","category":"Острова и пространства"},{"id":112,"name":"Анненкирхе","category":"Храмы"},{"id":113,"name":"Лютеранская церковь Святого Михаила","category":"Храмы"},{"id":114,"name":"Петрикирхе","category":"Храмы"},{"id":115,"name":"Армянская церковь Святой Екатерины","category":"Храмы"},{"id":116,"name":"Католическая базилика Святой Екатерины","category":"Храмы"},{"id":117,"name":"Дом книги на Невском","category":"Архитектура"},{"id":118,"name":"Белосельских-Белозерских дворец","category":"Дворцы и музеи"},{"id":119,"name":"Шереметевский дворец","category":"Дворцы и музеи"},{"id":120,"name":"Музей Фаберже в Шуваловском дворце","category":"Дворцы и музеи"},{"id":121,"name":"Петровская акватория","category":"Музеи"},{"id":122,"name":"Государственная капелла","category":"Архитектура"},{"id":123,"name":"Дворцовая набережная","category":"Улицы и набережные"},{"id":124,"name":"Английская набережная","category":"Улицы и набережные"},{"id":125,"name":"Набережная Кутузова","category":"Улицы и набережные"},{"id":126,"name":"Банковский мост","category":"Мосты"},{"id":127,"name":"Львиный мост","category":"Мосты"},{"id":128,"name":"Красный мост","category":"Мосты"},{"id":129,"name":"Троицкий мост","category":"Мосты"},{"id":130,"name":"Литейный мост","category":"Мосты"},{"id":131,"name":"Дворцовый мост","category":"Мосты"},{"id":132,"name":"Биржевой мост","category":"Мосты"},{"id":133,"name":"Певческий мост","category":"Мосты"},{"id":134,"name":"Петергоф — Большой дворец","category":"Пригороды"},{"id":135,"name":"Петергоф — Нижний парк и фонтаны","category":"Пригороды"},{"id":136,"name":"Петергоф — Большой каскад","category":"Пригороды"},{"id":137,"name":"Ораниенбаум — Большой Меншиковский дворец","category":"Пригороды"},{"id":138,"name":"Ораниенбаум — Китайский дворец","category":"Пригороды"},{"id":139,"name":"Царское Село — Екатерининский дворец","category":"Пригороды"},{"id":140,"name":"Царское Село — Екатерининский парк","category":"Пригороды"},{"id":141,"name":"Царское Село — Александровский дворец","category":"Пригороды"},{"id":142,"name":"Царское Село — Камеронова галерея","category":"Пригороды"},{"id":143,"name":"Павловский дворец","category":"Пригороды"},{"id":144,"name":"Павловский парк","category":"Пригороды"},{"id":145,"name":"Кронштадтский Морской Никольский собор","category":"Кронштадт"},{"id":146,"name":"Якорная площадь в Кронштадте","category":"Кронштадт"},{"id":147,"name":"Парк «Остров фортов»","category":"Кронштадт"},{"id":148,"name":"Форт Константин","category":"Кронштадт"},{"id":149,"name":"Форт Риф","category":"Кронштадт"},{"id":150,"name":"Заказник «Западный Котлин»","category":"Природа"},{"id":151,"name":"Комаровский берег","category":"Природа"},{"id":152,"name":"Сестрорецкий разлив","category":"Природа"},{"id":153,"name":"Дюны Курортного района","category":"Природа"}];
+const STORAGE_KEY = "spb-beautiful-places.visited.v1";
+
+let visited = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"));
+let showVisited = false;
+let searchText = "";
+
+const grid = document.getElementById("grid");
+const empty = document.getElementById("empty");
+const remainingCount = document.getElementById("remainingCount");
+const statsText = document.getElementById("statsText");
+const toggleVisited = document.getElementById("toggleVisited");
+const searchInput = document.getElementById("search");
+
+function saveVisited() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify([...visited]));
+}
+
+function yandexUrl(place) {
+  const suffix = /Петергоф|Ораниенбаум|Царское Село|Павловск|Кронштадт|Комаров|Сестрорецк|Котлин/i.test(place.name) ? "" : ", Санкт-Петербург";
+  return "https://yandex.ru/maps/?text=" + encodeURIComponent(place.name + suffix);
+}
+
+function visiblePlaces() {
+  const q = searchText.trim().toLocaleLowerCase("ru");
+  return PLACES.filter(p => {
+    if (!showVisited && visited.has(p.id)) return false;
+    if (!q) return true;
+    return (p.name + " " + p.category).toLocaleLowerCase("ru").includes(q);
+  });
+}
+
+function cardTemplate(p) {
+  const isVisited = visited.has(p.id);
+  return `
+    <article class="card ${isVisited ? "visited" : ""}" data-id="${p.id}">
+      <div class="photo-wrap">
+        <img class="photo" alt="Фото: ${escapeHtml(p.name)}" loading="lazy" data-photo-query="${escapeHtml(p.name)} Санкт-Петербург">
+        <span class="photo-status">Загружаем фото…</span>
+        <a class="photo-credit" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+      </div>
+      <div class="body">
+        <div class="cat">${escapeHtml(p.category)}</div>
+        <h2 class="name">${escapeHtml(p.name)}</h2>
+        <div class="actions">
+          <a class="map" href="${yandexUrl(p)}" target="_blank" rel="noopener noreferrer">На карте ↗</a>
+          <button class="visit" type="button" data-visit="${p.id}">${isVisited ? "Вернуть" : "Посещено ✓"}</button>
+        </div>
+      </div>
+    </article>`;
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+}
+
+function updateStats() {
+  const remaining = PLACES.length - visited.size;
+  remainingCount.textContent = remaining;
+  statsText.textContent = `из ${PLACES.length} осталось посетить`;
+  toggleVisited.textContent = showVisited ? `Скрыть посещённые (${visited.size})` : `Показать посещённые (${visited.size})`;
+  toggleVisited.classList.toggle("active", showVisited);
+}
+
+function render() {
+  const list = visiblePlaces();
+  grid.innerHTML = list.map(cardTemplate).join("");
+  empty.style.display = list.length ? "none" : "block";
+  updateStats();
+  observePhotos();
+}
+
+async function loadCommonsPhoto(img) {
+  if (img.dataset.loading || img.src) return;
+  img.dataset.loading = "1";
+  const wrap = img.closest(".photo-wrap");
+  const status = wrap.querySelector(".photo-status");
+  const credit = wrap.querySelector(".photo-credit");
+  const query = img.dataset.photoQuery;
+
+  try {
+    const api = new URL("https://commons.wikimedia.org/w/api.php");
+    api.searchParams.set("action","query");
+    api.searchParams.set("format","json");
+    api.searchParams.set("origin","*");
+    api.searchParams.set("generator","search");
+    api.searchParams.set("gsrsearch",query);
+    api.searchParams.set("gsrnamespace","6");
+    api.searchParams.set("gsrlimit","8");
+    api.searchParams.set("prop","imageinfo");
+    api.searchParams.set("iiprop","url|mime");
+    api.searchParams.set("iiurlwidth","900");
+
+    const res = await fetch(api);
+    const json = await res.json();
+    const pages = Object.values(json?.query?.pages || {})
+      .filter(p => p.imageinfo?.[0] && /^image\//.test(p.imageinfo[0].mime || ""))
+      .sort((a,b) => (a.index ?? 99) - (b.index ?? 99));
+
+    if (!pages.length) throw new Error("no image");
+    const page = pages[0];
+    const info = page.imageinfo[0];
+    img.src = info.thumburl || info.url;
+    img.onload = () => {
+      img.classList.add("loaded");
+      status.style.display = "none";
+    };
+    credit.href = info.descriptionurl || `https://commons.wikimedia.org/?curid=${page.pageid}`;
+    credit.classList.add("show");
+  } catch (e) {
+    status.textContent = "Фото не загрузилось";
+    status.style.color = "#504a43";
+    status.style.textShadow = "none";
+  }
+}
+
+function observePhotos() {
+  const imgs = [...document.querySelectorAll("img[data-photo-query]")];
+  if (!("IntersectionObserver" in window)) {
+    imgs.forEach(loadCommonsPhoto);
+    return;
+  }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        loadCommonsPhoto(entry.target);
+        io.unobserve(entry.target);
+      }
+    });
+  }, {rootMargin:"500px 0px"});
+  imgs.forEach(img => io.observe(img));
+}
+
+grid.addEventListener("click", e => {
+  const btn = e.target.closest("[data-visit]");
+  if (!btn) return;
+  const id = Number(btn.dataset.visit);
+  if (visited.has(id)) visited.delete(id);
+  else visited.add(id);
+  saveVisited();
+  render();
+});
+
+toggleVisited.addEventListener("click", () => {
+  showVisited = !showVisited;
+  render();
+});
+
+searchInput.addEventListener("input", e => {
+  searchText = e.target.value;
+  render();
+});
+
+render();
+</script>
+</body>
+</html>
